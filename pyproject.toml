@@ -1,16 +1,17 @@
-[project]
-name = "domain-model"
+[tool.poetry]
+name = "a-domain-model"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "AndriiDubonos",email = "andreydubonos1@gmail.com"}
-]
-license = {text = "MIT"}
+authors = ["AndriiDubonos <andreydubonos1@gmail.com>"]
+license = "MIT"
 readme = "README.md"
-requires-python = ">=3.13"
-dependencies = [
-    "pydantic (==2.11.3)"
+packages = [
+    {include = "domain_model"}
 ]
+
+[tool.poetry.dependencies]
+python = ">=3.13"
+pydantic = "2.11.3"
 
 
 [build-system]
