@@ -8,7 +8,7 @@ def convert_error(error_class: type[Exception]):
     try:
         yield
     except Exception as e:
-        raise error_class from e
+        raise error_class(*e.args) from e
 
 
 class BaseUseCase(ABC):
