@@ -35,7 +35,7 @@ class BasePassportUseCase(BaseUseCase):
 
         aggregate_data = aggregate.get_data()
         events = aggregate.get_domain_events()
-        self._handle_events(aggregate_data=aggregate_data, events=events)
+        await self._handle_events(aggregate_data=aggregate_data, events=events, unit_of_work=unit_of_work)
 
         return self._prepare_result(aggregate_data=aggregate_data, events=events)
 
@@ -54,9 +54,9 @@ class BasePassportUseCase(BaseUseCase):
     def _generate_commands(self, validated_data: Any) -> Generator[BaseCommand, None, None]:
         raise NotImplementedError
 
-    def _handle_events(self, aggregate_data: AggregateData, events: list[BaseDomainEvent]) -> None:
+    async def _handle_events(self, aggregate_data: AggregateData, events: list[BaseDomainEvent], unit_of_work: UnitOfWork) -> None:
         events_handler = self._get_events_handler()
-        events_handler.handle(data=aggregate_data, events=events)
+        await events_handler.handle(data=aggregate_data, events=events, unit_of_work=unit_of_work)
 
     def _get_events_handler(self) -> DomainEventsHandler:
         return self._passport.get_events_handler()
