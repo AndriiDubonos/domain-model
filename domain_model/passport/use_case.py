@@ -70,7 +70,7 @@ class BaseCreateAggregatePassportUseCase(BaseUseCase):
         super().__init__(error_class=error_class)
         self._passport = passport
 
-    async def execute(self, unit_of_work: UnitOfWork, root_id: UUID, raw_data: Any) -> Any:
+    async def execute(self, unit_of_work: UnitOfWork, raw_data: Any) -> Any:
         validated_data = await self._parse_and_validate(raw_data=raw_data)
         commands = list(self._generate_commands(validated_data=validated_data))
 

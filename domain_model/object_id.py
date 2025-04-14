@@ -1,5 +1,10 @@
 from __future__ import annotations
+
+from typing import Any
 from uuid import UUID, uuid4
+
+from pydantic import GetCoreSchemaHandler
+from pydantic_core import core_schema
 
 
 class ObjectID:
@@ -29,3 +34,11 @@ class ObjectID:
 
     def __hash__(self) -> int:
         return hash(self._id)
+
+    @classmethod
+    def __get_pydantic_core_schema__(
+            cls,
+            _source_type: Any,
+            _handler: GetCoreSchemaHandler,
+    ) -> core_schema.CoreSchema:
+        return core_schema.uuid_schema()
