@@ -1,11 +1,10 @@
 from domain_model.aggregate import Aggregate
-from domain_model.passport.passport import Passport
 from domain_model.repository import BaseRepository, BaseStorage
 from domain_model.typing import AggregateData
 
 
 class PassportRepository(BaseRepository):
-    def __init__(self, passport: Passport, storage: BaseStorage):
+    def __init__(self, passport: 'Passport', storage: BaseStorage):
         super().__init__(storage=storage)
         self._passport = passport
 
