@@ -46,4 +46,4 @@ class ObjectID:
                 raise ValueError(f'Expected ObjectID, got {type(value)}')
             return value
 
-        return core_schema.no_info_after_validator_function(validate, core_schema.uuid_schema())
+        return core_schema.no_info_after_validator_function(validate, core_schema.any_schema())
