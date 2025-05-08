@@ -41,4 +41,9 @@ class ObjectID:
             _source_type: Any,
             _handler: GetCoreSchemaHandler,
     ) -> core_schema.CoreSchema:
-        return core_schema.uuid_schema()
+        def validate(value):
+            if not isinstance(value, ObjectID):
+                raise ValueError(f'Expected ObjectID, got {type(value)}')
+            return value
+
+        return core_schema.no_info_after_validator_function(validate, core_schema.uuid_schema())
