@@ -7,3 +7,6 @@ class BaseDBUnit(BaseUnit):
 
     async def rollback(self):
         raise NotImplementedError
+
+    async def handle_exception(self, exc_type, exc_val, exc_tb):
+        await self.rollback()

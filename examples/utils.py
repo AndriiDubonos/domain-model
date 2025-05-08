@@ -19,3 +19,6 @@ class InMemoryJSONDBUnit(BaseUnit):
     def set(self, key: UUID, value: dict):
         self._storage[str(key)] = value
         return True
+
+    async def handle_exception(self, exc_type, exc_val, exc_tb):
+        pass

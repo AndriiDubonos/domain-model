@@ -12,4 +12,4 @@ class BaseUnit:
         pass
 
     async def handle_exception(self, exc_type, exc_val, exc_tb):
-        pass
+        raise NotImplementedError
